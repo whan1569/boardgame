@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="utf-8">
+	<title>Login</title>
+</head>
+<body>
+	<section class="login-form">
+		<h1>게임 업로드</h1>
+		<form action="" enctype="multipart/form-data">
+			<div class="int-area">
+				<input type="text" name="id" id="id" autocomplete="off" required>
+				<label for="id">게임이름</label>
+			</div>
+			<div class="int-area">
+				<input type="text" name="pw" id="pw" autocomplete="off" required>
+				<label for="pw">게임설명</label>
+            </div>
+            <div>
+                <input type="file" name="img">
+            </div>
+			<div class="btn-area">
+				<button id="btn" type="submit">로그인</button>
+			</div>
+		</form>
+		<div class="caption">
+			<a href="/users/join">회원가입</a>
+		</div>
+	</section>
+</body>
