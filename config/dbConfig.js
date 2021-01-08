@@ -1,9 +1,9 @@
 const mysql = require('mysql');
 const config ={
     host: 'localhost',
-    user: 'ldh',
+    user: 'root',
     password: '1234',
-    database: ''
+    database: 'boardgame'
 }
 var pool = mysql.createPool(config);
 
