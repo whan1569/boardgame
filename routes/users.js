@@ -18,7 +18,6 @@ router.get('/join', function(req, res, next) {
 
 router.get('/game_list', async function(req, res, next) {
   var game = await dbcon("SELECT game_name, game_cont, game_max, game_min  FROM game",);
-  console.log([game]);
   res.render('game_list', { title: 'game_list', game: game });
 });
 
@@ -45,12 +44,16 @@ router.post('/join',function(req, res, next){
 
 router.post('/login', async function(req, res, next){
   const{id,pw} = req.body;
+  
   var [result] = await dbcon("SELECT user_id FROM user WHERE user_id = ? AND user_pw = ?",[id,pw]);
   if(result)
   {
+    sess.id = id;
     res.redirect("/");
   }
-  res.redirect("/users/login");
+  else{
+    res.redirect("/users/login");
+  }
 });
 
 router.post('/game_insert', function(req, res, next){
@@ -62,7 +65,7 @@ router.post('/game_insert', function(req, res, next){
 router.post('/room_insert', function(req, res, next){
   const{name,peo} = req.body;
   dbcon("INSERT INTO boardgame.room(``, ``) VALUES (?, ?);",[name,peo]);
-  res.redirect("/");
+  res.redirect("/");np
 });
 
 
