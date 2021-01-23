@@ -4,11 +4,18 @@
     <title><%= title %></title>
   </head>
   <body>
-    <a>
-      <a>방이름 인원수 개설자</a>
-      <a href="/users/game_insert">즐겨 찾기 추가</a>
+    <% room.forEach(item => {
+    const { user_id, room_name, room_peo } = item;
+    %>
+    <form action="" method="POST">
+      <a><%=user_id%></a>
+      <a> {<%=room_name%>} </a>
+      <a><%=room_peo%></a>
+      <button id="btn" type="submit">즐겨찾기 추가</button>
+    </form>
       <h1></h1>
     </a>
+  <%})%>
 	<a href="/users/room_insert">방생성</a>
   </body>
 </html>

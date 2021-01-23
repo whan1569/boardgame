@@ -4,9 +4,14 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  req.session.id="hi";
-  console.log(req.session);
-  res.render('index', { title: req.session.id });
+  a="hello";
+  if(req.session.user)
+  {
+    a="hello  " + req.session.user.user_id;
+  }
+  else
+    res.redirect("/users/login");
+  res.render('index', { title:  a});
 });
 
 module.exports = router;
