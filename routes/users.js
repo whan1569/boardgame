@@ -21,8 +21,28 @@ router.get('/game_list', async function(req, res, next) {
   res.render('game_list', { title: 'game_list', game: game });
 });
 
+router.get('/game_list/like', function(req, res, next){
+  user_id=req.session.user.user_id;
+  game_name = req.query.game_name;
+  dbcon("INSERT INTO boardgame.user_like_game(`game_name`, `user_id`) VALUES (?, ?);",[game_name,user_id]);
+  res.redirect("/");
+});
+
 router.get('/game_insert', function(req, res, next) {
   res.render('game_insert', { title: 'game_insert' });
+});
+
+router.get('/game_like_list', async function(req, res, next){
+  user_id=req.session.user.user_id;
+  var result = await dbcon("SELECT game_name, user_id FROM user_like_game WHERE user_id = ?",[user_id]);
+  res.render('game_like_list', { title: 'game_like_list', game: result });
+});
+
+router.get('/game_like_list/del', async function(req, res, next){
+  user_id=req.session.user.user_id;
+  game_name = req.query.game_name;
+  var result = await dbcon("DELETE FROM boardgame.user_like_game WHERE game_name = ? AND user_id = ?",[game_name,user_id]);
+  res.redirect("/users/game_like_list");
 });
 
 router.get('/room_list', async function(req, res, next) {
@@ -33,6 +53,7 @@ router.get('/room_list', async function(req, res, next) {
 router.get('/room_insert', function(req, res, next) {
   res.render('room_insert', { title: 'room_insert' });
 });
+
 router.get('/logout', function(req, res, next) {
   req.session.destroy(function(err) {
   })
@@ -74,13 +95,7 @@ router.post('/room_insert', function(req, res, next){
   dbcon("INSERT INTO boardgame.room(`user_id`, `room_name`, `room_peo`) VALUES (?, ?, ?);",[id,name,peo]);
   res.redirect("/");
 });
-
-router.get('/game_list/like', function(req, res, next){
-  user_id=req.session.user.user_id;
-  game_name = req.query.game_name;
-  dbcon("INSERT INTO boardgame.user_like_game(`game_name`, `user_id`) VALUES (?, ?);",[game_name,user_id]);
-  res.redirect("/");
-});
 }
+
 
 module.exports = router;

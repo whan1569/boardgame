@@ -9,19 +9,16 @@
 
     <table>
       <% game.forEach(item => {
-      const { game_name, game_cont, game_max, game_min } = item;
+      const { game_name} = item;
       %>
       <tr>
         <th><%=game_name%></th>
-        <th><%=game_cont%></th>		
-        <th><%=game_max%></th>
-        <th><%=game_min%></th>
-        <%url = "/users/game_list/like?game_name="+ game_name %>
-        <th><a href=<%=url%>>즐겨찾기 추가</a></th>
+        <%url = "/users/game_like_list/del?game_name="+ game_name %>
+        <th><a href=<%=url%>>즐겨찾기 삭제</a></th>
       </tr>
       <%})%>
     </table>
     </a>
-	<a href="/users/game_insert">게임삽입</a>
+	<a href="/">HOME</a>
   </body>
 </html>
