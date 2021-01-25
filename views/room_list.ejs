@@ -14,8 +14,9 @@
       <tr>
         <th><%=user_id%></th>
         <th><%=room_name%></th>		
-        <th><%=room_peo%></th>	
-        <th><button id="btn" type="submit">대화 신청하기</button></th>
+        <th><%=room_peo%></th>
+        <%url = "/users/room_list/talk?user_id=" + user_id %>	
+        <th><a href=<%=url%>>대화 신청하기</a></th>
       </tr>
 		  </form>
       <%})%>
