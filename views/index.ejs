@@ -14,8 +14,13 @@
   <h1>대화</h1>
   <% result.forEach(item => {
     const { user_1, user_2 } = item;
+    if(user_1 == user_id)
+      var user_in = user_2;
+    else
+      var user_in = user_1;
     %>
-    <a href=""><%=user_1%>   <%=user_2%></a>
+    
+    <a href=""><%=user_in%></a>
   <%})%>
 </body>
 </html>
