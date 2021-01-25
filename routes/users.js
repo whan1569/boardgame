@@ -33,6 +33,11 @@ router.get('/room_list', async function(req, res, next) {
 router.get('/room_insert', function(req, res, next) {
   res.render('room_insert', { title: 'room_insert' });
 });
+router.get('/logout', function(req, res, next) {
+  req.session.destroy(function(err) {
+  })
+  res.redirect('/');
+});
 }
 
 /* 포스트 동작 */
@@ -70,10 +75,10 @@ router.post('/room_insert', function(req, res, next){
   res.redirect("/");
 });
 
-router.post('/game_list', function(req, res, next){
-  id=req.session.user.user_id;
-  const{game_name} = req.body;
-  dbcon("INSERT INTO boardgame.user_like_game(`game_name`, `user_name`) VALUES (?, ?);",[game_name,id]);
+router.get('/game_list/like', function(req, res, next){
+  user_id=req.session.user.user_id;
+  game_name = req.query.game_name;
+  dbcon("INSERT INTO boardgame.user_like_game(`game_name`, `user_id`) VALUES (?, ?);",[game_name,user_id]);
   res.redirect("/");
 });
 }
