@@ -1,24 +1,31 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= title %></title>
-  </head>
-  <body>
 
-    <h1>게임 목록</h1>
+<head>
+  <title>
+    <%= title %>
+  </title>
+</head>
 
-    <table>
-      <% game.forEach(item => {
+<body>
+
+  <h1>게임 목록</h1>
+
+  <table>
+    <% game.forEach(item=> {
       const { game_name} = item;
       %>
       <tr>
-        <th><%=game_name%></th>
-        <%url = "/games/game_like_list/del?game_name="+ game_name %>
-        <th><a href=<%=url%>>즐겨찾기 삭제</a></th>
+        <th>
+          <%=game_name%>
+        </th>
+        <%url="/games/game_like_list/del?game_name=" + game_name %>
+          <th><a href=<%=url%>>즐겨찾기 삭제</a></th>
       </tr>
       <%})%>
-    </table>
-    </a>
-	<a href="/">HOME</a>
-  </body>
+  </table>
+  </a>
+  <a href="/">HOME</a>
+</body>
+
 </html>
